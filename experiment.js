@@ -26,7 +26,7 @@ for (const spk of SPEAKERS) {
     for (const combo of Object.keys(TONE_NAMES)) {
       ALL_STIMULI.push({
         stimulus_id:    `${spk}_${em.code}_${combo}`,
-        audio:          `audio/${spk}_${em.code}_${combo}.wav`,
+        audio:          `https://raw.githubusercontent.com/poisonedfrog-alt/experiment/main/audio/${spk}_${em.code}_${combo}.wav`,
         speaker:        spk,
         emotion_code:   em.code,
         emotion_target: em.target,
@@ -71,6 +71,13 @@ function downloadCSV(rows, filename) {
 
 const jsPsych = initJsPsych({
   on_finish: function() {
+    // Данные анкеты
+    const surveyData = jsPsych.data.get()
+      .filter({ trial_type: "survey-html-form" })
+      .values();
+    const q = (surveyData.length > 0 && surveyData[0].response) ? surveyData[0].response : {};
+
+    // Аудио-пробы
     const allData = jsPsych.data.get()
       .filter({ trial_type: "audio-button-response" })
       .values();
@@ -87,6 +94,18 @@ const jsPsych = initJsPsych({
       response:        d.response_label,
       rt:              d.rt,
       time_elapsed:    d.time_elapsed,
+      age:             q.age             ?? "",
+      gender:          q.gender          ?? "",
+      L1:              q.L1              ?? "",
+      L1_other:        q.L1_other        ?? "",
+      email:           q.email           ?? "",
+      contact_consent: q.contact_consent ?? "",
+      HSK:             q.HSK             ?? "",
+      years_CN:        q.years_CN        ?? "",
+      onset_age:       q.onset_age       ?? "",
+      music:           q.music           ?? "",
+      immersion:       q.immersion       ?? "",
+      exposure:        q.exposure        ?? "",
     }));
 
     downloadCSV(rows, `results_${participantId}.csv`);
@@ -147,8 +166,8 @@ const practiceEnd = {
       <p>现在开始正式实验，共 <b>256 道题</b>。</p>
       <p>Обратная связь больше не отображается.</p>
       <p>正式实验中将不再显示答案反馈。</p>
-      <p>Вы можете делать паузы между заданиями.</p>
-      <p>您可以在题目之间稍作休息。</p>
+      <p>Пожалуйста, отвечайте без пауз — фиксируется время реакции.</p>
+      <p>请连续作答，不要中途休息——系统将记录您的反应时间。</p>
     </div>`,
   choices: ["Начать эксперимент / 开始实验"],
 };
@@ -253,7 +272,6 @@ const questionnaire = {
         <option value="">— выберите / 请选择 —</option>
         <option value="Russian">Русский</option>
         <option value="Mandarin">普通话 (Путунхуа)</option>
-        <option value="Cantonese">粤语 (Кантонский)</option>
         <option value="Other">Другое / 其他</option>
       </select>
     </div>
@@ -337,13 +355,13 @@ const questionnaire = {
   button_label: "Завершить / 完成",
   on_load: function() {
     window.handleL1Change = function(val) {
-      const ruBlock      = document.getElementById("ru-block");
-      const otherBlock   = document.getElementById("q-L1-other-block");
-      const otherInput   = document.getElementById("q-L1-other");
+      const ruBlock    = document.getElementById("ru-block");
+      const otherBlock = document.getElementById("q-L1-other-block");
+      const otherInput = document.getElementById("q-L1-other");
       otherBlock.classList.toggle("hidden", val !== "Other");
       otherInput.required = (val === "Other");
-      ruBlock.classList.toggle("hidden", val !== "Russian" && val !== "Other");
-      if (val !== "Russian" && val !== "Other") {
+      ruBlock.classList.toggle("hidden", val !== "Russian");
+      if (val !== "Russian") {
         document.getElementById("hsk-detail-block").classList.add("hidden");
       }
     };
