@@ -359,16 +359,16 @@ const questionnaire = {
       const ruBlock    = document.getElementById("ru-block");
       const otherBlock = document.getElementById("q-L1-other-block");
       const otherInput = document.getElementById("q-L1-other");
-      otherBlock.classList.toggle("hidden", val !== "Other");
+      otherBlock.style.display = (val === "Other") ? "block" : "none";
       otherInput.required = (val === "Other");
-      ruBlock.classList.toggle("hidden", val !== "Russian");
+      ruBlock.style.display = (val === "Russian") ? "block" : "none";
       if (val !== "Russian") {
-        document.getElementById("hsk-detail-block").classList.add("hidden");
+        document.getElementById("hsk-detail-block").style.display = "none";
       }
     };
     window.handleHSKChange = function(val) {
-      document.getElementById("hsk-detail-block")
-        .classList.toggle("hidden", !val || val === "none");
+      document.getElementById("hsk-detail-block").style.display =
+        (!val || val === "none") ? "none" : "block";
     };
   },
 };
