@@ -276,7 +276,7 @@ const questionnaire = {
       </select>
     </div>
 
-    <div class="form-question hidden" id="q-L1-other-block">
+    <div class="form-question" id="q-L1-other-block" style="display:none">
       <label>3а. Укажите ваш родной язык / 请注明您的母语</label>
       <input type="text" name="L1_other" id="q-L1-other">
     </div>
@@ -294,7 +294,7 @@ const questionnaire = {
       </div>
     </div>
 
-    <div id="ru-block" class="hidden">
+    <div id="ru-block" style="display:none">
 
       <div class="form-question">
         <label>6. Уровень китайского языка / 汉语水平</label>
@@ -307,10 +307,11 @@ const questionnaire = {
           <option value="HSK4">HSK 4</option>
           <option value="HSK5">HSK 5</option>
           <option value="HSK6">HSK 6</option>
+          <option value="HSK7-9">HSK 7-9</option>
         </select>
       </div>
 
-      <div id="hsk-detail-block" class="hidden">
+      <div id="hsk-detail-block" style="display:none">
         <div class="form-question">
           <label>7. Сколько лет вы изучаете китайский? / 您学习汉语多少年了？</label>
           <input type="number" name="years_CN" min="0" max="30">
