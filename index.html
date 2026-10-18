@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>汉语情感韵律感知实验</title>
+  <script src="https://unpkg.com/jspsych@7.3.4/jspsych.js"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.3/index.js"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-audio-button-response@1.1.3/index.js"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.3/index.js"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-survey-html-form@1.0.3/index.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/jspsych@7.3.4/css/jspsych.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f5f5f5;
+    }
+    .jspsych-content {
+      max-width: 800px;
+    }
+    .jspsych-btn {
+      font-size: 18px;
+      padding: 14px 32px;
+      margin: 10px;
+      border-radius: 8px;
+      border: 2px solid #4a90d9;
+      background: #fff;
+      color: #4a90d9;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .jspsych-btn:hover {
+      background: #4a90d9;
+      color: #fff;
+    }
+    .instruction-text {
+      font-size: 17px;
+      line-height: 1.8;
+      text-align: left;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .progress-bar-container {
+      width: 100%;
+      background: #ddd;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      height: 8px;
+    }
+    .progress-bar {
+      height: 8px;
+      background: #4a90d9;
+      border-radius: 4px;
+      transition: width 0.3s;
+    }
+    .trial-counter {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    .form-question {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .form-question label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+    .form-question select,
+    .form-question input[type="text"],
+    .form-question input[type="number"],
+    .form-question input[type="email"] {
+      width: 100%;
+      padding: 8px 12px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+    .form-question .radio-group label {
+      font-weight: normal;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+      cursor: pointer;
+    }
+    .hidden { display: none; }
+    #jspsych-survey-html-form-submit {
+      font-size: 16px;
+      padding: 12px 30px;
+      background: #4a90d9;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+<script src="experiment.js"></script>
+</body>
+</html>
