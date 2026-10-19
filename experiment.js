@@ -182,6 +182,13 @@ const EMOTION_LABELS = {
 };
 const BUTTON_ORDER = ["neutral","happy","angry","sad"];
 
+const isi = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: "",
+  choices: [],
+  trial_duration: 500,
+};
+
 function makeAudioTrial(stim, isPractice, index, total) {
   const trial = {
     type: jsPsychAudioButtonResponse,
@@ -224,10 +231,10 @@ function makeAudioTrial(stim, isPractice, index, total) {
       trial_duration: 2500,
       response_ends_trial: true,
     };
-    return [trial, feedback];
+    return [trial, feedback, isi];
   }
 
-  return [trial];
+  return [trial, isi];
 }
 
 // ── 7. СБОРКА ПРОБ ────────────────────────────────────────────
@@ -336,8 +343,8 @@ const questionnaire = {
         <div class="radio-group">
           <label><input type="radio" name="immersion" value="no"> Нет / 否</label>
           <label><input type="radio" name="immersion" value="short"> Да, менее 3 месяцев / 是，不足3个月</label>
-          <label><input type="radio" name="immersion" value="medium"> Да, 3–12 месяцев / 是，3–12个月</label>
-          <label><input type="radio" name="immersion" value="long"> Да, более года / 是，超过1年</label>
+          <label><input type="radio" name="immersion" value="medium"> Да, 3–6 месяцев / 是，3–6个月</label>
+          <label><input type="radio" name="immersion" value="long"> Да, 6 и более месяцев / 是，6个月及以上</label>
         </div>
       </div>
 
