@@ -84,6 +84,7 @@ const jsPsych = initJsPsych({
 
     const rows = allData.map(d => ({
       participant_id:  participantId,
+      stim_version:    "original_loudness",
       stimulus_id:     d.stimulus_id,
       speaker:         d.speaker,
       emotion_code:    d.emotion_code,
@@ -178,7 +179,7 @@ const EMOTION_LABELS = {
   neutral: { ru: "Нейтральная", zh: "中性" },
   happy:   { ru: "Радость",     zh: "高兴" },
   angry:   { ru: "Злость",      zh: "生气" },
-  sad:     { ru: "Грусть",      zh: "悲伤" },
+  sad:     { ru: "Печаль",      zh: "悲伤" },
 };
 const BUTTON_ORDER = ["neutral","happy","angry","sad"];
 
@@ -391,7 +392,7 @@ const goodbye = {
       <p>Файл с результатами был автоматически загружен на ваш компьютер.</p>
       <p style="color:#888;font-size:14px">Если загрузка не началась, обратитесь к исследователю.</p>
     </div>`,
-  choices: ["Закрыть / 关闭"],
+  choices: ["Скачать результаты / 下载文件"],
   on_finish: function() {
     document.body.innerHTML = `<p style="text-align:center;margin-top:100px;font-size:18px">
       Вы можете закрыть эту вкладку. / 您可以关闭此页面。</p>`;
